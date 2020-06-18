@@ -5,7 +5,8 @@ body, html {
     width: 100%;
     margin: 0;
     padding: 0;
-    background: #333333;
+    overflow-x: hidden;
+    background: #aaa;
 }
 
 ::selection {
@@ -15,7 +16,7 @@ body, html {
 nav {
     height: 65px;
     width: calc(100vw - 4vw);
-    background: #111;
+    background: #333;
     position: fixed;
     top: 0;
     padding: 0px 2vw;
@@ -73,21 +74,35 @@ div#wrapper {
     background: transparent;
     height: 10px;
     margin-left: calc(50vw - 76vw / 2);
-    margin-top: 15vh;
+    margin-top: 65px;
+}
+header {
+    height: 50vh;
+    width: 100vw;
+    background: url('images/ex_1.jpg');
+    background-size: cover;
+    background-position-y: -50vh;
+    margin-left: -12vw;
+    color: #fff;
+    text-shadow: 1px 1px 10px #000000;
+    text-align: center;
+    line-height: 50vh;
+    font-size: 90px;
+    font-family: 'Roboto', sans-serif;
 }
 
 article h2 {
     font-family: 'Lobster', 'Raleway', serif;
-    color: #fff;
+    color: #111;
     font-weight: 400;
     font-size: 34px;
 }
 article p {
-    color: #ccc;
+    color: #333;
     font-family: 'Roboto';
     text-align: justify;
     text-indent: 20px;
-    font-weight: 300;
+    font-weight: 500;
 }
 article div.pix {
     height: 500px;
@@ -114,7 +129,7 @@ article div.pix {
         left: -60vw;
         float: left;
         top: 65px;
-        background: #111;
+        background: #333;
         padding: 0;
         width: 60vw;
         height: calc(100vh - 65px);
@@ -135,6 +150,9 @@ article div.pix {
         width: 100vw!important;
         height: 300px!important;
         margin-left: -12vw!important;
+    }
+    header {
+        font-size: 43px;
     }
 }
 

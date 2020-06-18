@@ -19,3 +19,10 @@ $(document).on('click', '.open-links', function() {
         navopen = false;
     }
 });
+
+$(document).ready(function() {
+    $("body").scroll(function() {
+        var st = $("body").scrollTop() / 3;
+        $("header").css('background-position-y', 'calc(-50vh + ' + st + 'px)');
+    });
+});
