@@ -23,8 +23,8 @@ $(document).on('click', '.open-links', function() {
 $(document).ready(function() {
 
     $("body").scroll(function() {
-        var st = $("body").scrollTop() / 3;
-        $("header").css('background-position-y', st + 'px');
+        var st = $("body").scrollTop() / 4;
+        $("header").css('background-position-y', -st + 'px');
     });
     $(document).on('click', '.filter', function() {
         $(".filter").removeClass('selected');
