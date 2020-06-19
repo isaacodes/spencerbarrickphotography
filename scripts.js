@@ -44,7 +44,7 @@ $(document).ready(function() {
         filterImages('carousel');
     }
 
-    $(document).on('mouseover', '.image-container img', function() {
+    $(document).on('mouseover, mousemove', '.image-container img', function() {
         var h = $(this).height();
         var w = $(this).width();
         var x = $(this).offset().left;
@@ -57,14 +57,17 @@ $(document).ready(function() {
 
 function filterImages(filterValue) {
     filterValue = filterValue.toLowerCase();
-    $(".image-container img").hide();
+    $(".image-container img").addClass('dark');
+    // $(".image-container img").hide();
     $(".image-container img").each(function() {
         if ($(this).hasClass(filterValue)) {
-            $(this).show();
+            $(this).removeClass("dark");
+            // $(this).show();
         }
     });
 }
 
 function noFilter() {
-    $(".image-container img").show();
+    $(".image-container img").removeClass('dark');
+    // $(".image-container img").show();
 }

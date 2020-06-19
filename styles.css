@@ -85,7 +85,6 @@ div#wrapper {
     background: transparent;
     height: 10px;
     margin-left: calc(50vw - 76vw / 2);
-    margin-top: 65px;
 }
 header {
     height: 50vh;
@@ -99,7 +98,7 @@ header {
     color: #fff;
     text-shadow: 1px 1px 10px #000000;
     text-align: center;
-    line-height: 50vh;
+    line-height: calc(50vh + 65px);
     font-size: 75px;
     font-family: 'Lobster', sans-serif;
 }
@@ -137,6 +136,7 @@ footer {
     color: #fff;
     background: #111;
     padding: 16px 0px;
+    clear: both;
     font-family: 'Roboto', sans-serif;
     margin: 5vh 0px 0px -12vw;
     text-align: center;
@@ -145,22 +145,51 @@ footer a {
     color: #FFB45E;
 }
 
-div.image-container {
+/* div.image-container {
     text-align: justify;
     width: 50vw;
     overflow: hidden;
     margin-left: 12.5vw;
+} */
+div.image-container {
+    width: 60vw;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    display: block;
+    font-size: 0;
 }
-
+.image-container .col-one, .col-two {
+    width: 50%;
+    height: 100%;
+    display: block;
+}
+.col-one {
+    float: left;
+}
+.col-two {
+    float: right;
+}
+.image-container img {
+    width: calc(100% - 8px);
+    margin: 4px 4px;
+    transition: all 0.3s ease;
+    height: auto;
+}
 div.image-container img {
     cursor: pointer;
     /* transition: all 0.2s ease; */
+}
+div.image-container img.dark {
+    /* filter: grayscale(100%) blur(3px); */
+    opacity: 10%;
+    /* display: none; */
 }
 .overlay {
     position: absolute;
     top: 0;
     left: 0;
     background: transparent;
+    z-index: 1000;
     pointer-events: none;
     overflow: hidden;
     background: #00000099;
@@ -170,12 +199,27 @@ div.image-container img {
 .overlay span.name {
     color: #fff;
     font-family: 'Lobster', serif;
-    font-size: 30px;
+    font-size: 50px;
     display: inline-block;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
     width: 100%;
     text-align: center;
-    margin-top: 150px;
-    transform: translateY(-50%);
+}
+.overlay span.location {
+    position: absolute;
+    bottom: 10px;
+    font-family: 'Roboto', sans-serif;
+    right: 10px;
+    color: #fff;
+}
+.overlay span.tags-list {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
 }
 
 ol, ul {
@@ -261,9 +305,8 @@ article h4 {
     header {
         font-size: 43px;
     }
-    div.image-container {
-        text-align: center!important;
-        width: 100vw;
+    .image-container {
+        width: 100vw!important;
         margin-left: -12vw;
     }
     nav span.nav-links a:not(.highlight).open {
@@ -284,5 +327,6 @@ article h4 {
     }
     article {
         overflow: visible;
+        position: relative;
     }
 }
