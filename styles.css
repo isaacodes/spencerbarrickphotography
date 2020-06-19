@@ -279,4 +279,7 @@ article h4 {
     .overlay {
         opacity: 0;
     }
+    article {
+        overflow: visible;
+    }
 }
