@@ -49,25 +49,45 @@ $(document).ready(function() {
         var w = $(this).width();
         var x = $(this).offset().left;
         var y = $(this).offset().top;
+        var tags = $(this).attr('class').replace(/ /g, ', ');
+        var location = $(this).data('location');
+        var name = $(this).data('name');
         $(".overlay").css('display', 'block').css('top', y + 'px').css('left', x + 'px').css('height', h).css('width', w);
+        $(".overlay .tags-list").html(tags);
+        $(".overlay .location").html(location);
+        $('.overlay .name').html(name);
     }).on('mouseleave', '.image-container img', function() {
         $(".overlay").css('display', 'none');
     });
 });
 
 function filterImages(filterValue) {
+    $(".filter.clear").addClass('show');
     filterValue = filterValue.toLowerCase();
     // $(".image-container img").addClass('dark');
     $(".image-container img").hide();
+    $(".image-container .desc").hide();
     $(".image-container img").each(function() {
         if ($(this).hasClass(filterValue)) {
             // $(this).removeClass("dark");
             $(this).show();
+            var ele = $(this);
+            $(".desc").each(function() {
+                if ($(this).html() == $(ele).data('name')) {
+                    $(this).show();
+                }
+            });
         }
     });
 }
 
 function noFilter() {
     // $(".image-container img").removeClass('dark');
+    $(".filter.clear").removeClass('show');
     $(".image-container img").show();
+    $(".image-container .desc").show();
 }
+
+$(document).on('click', '.image-container img', function() {
+
+});
