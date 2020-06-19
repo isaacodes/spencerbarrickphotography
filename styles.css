@@ -8,6 +8,9 @@ body, html {
     overflow-x: hidden;
     background: #131f28;
 }
+html {
+    overflow: hidden;
+}
 
 ::selection {
     background: #20add833;
@@ -16,13 +19,14 @@ body, html {
 nav {
     height: 65px;
     width: calc(100vw - 4vw);
-    background: #111;
+    background: #111111ee;
     position: fixed;
     top: 0;
+    z-index: 100;
     padding: 0px 2vw;
     font-size: 0;
     left: 0;
-    box-shadow: 0px 4px 10px #00000033;
+    /* box-shadow: 0px 4px 10px #00000099; */
 }
 nav span.nav-links {
     float: right;
@@ -56,7 +60,7 @@ nav span.nav-links a.highlight:hover {
     filter: brightness(110%);
 }
 nav span.nav-links a:not(.highlight).open {
-    box-shadow: 0px 3px 0px #FFB45E;
+    box-shadow: 0px -3px 0px #FFB45E inset;
     color: #fff;
 }
 nav button.open-links {
@@ -88,21 +92,23 @@ header {
     width: 100vw;
     background: url('images/ex_1.jpg');
     background-size: cover;
-    background-position-y: -50vh;
     margin-left: -12vw;
     color: #fff;
     text-shadow: 1px 1px 10px #000000;
     text-align: center;
     line-height: 50vh;
     font-size: 75px;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Lobster', sans-serif;
 }
 
+article {
+    overflow: hidden;
+}
 article h2 {
-    font-family: 'Lobster', 'Raleway', serif;
+    font-family: 'Raleway', serif;
     color: #fff;
     font-weight: 400;
-    font-size: 34px;
+    font-size: 28px;
 }
 article p {
     color: #ddd;
@@ -120,9 +126,99 @@ article div.pix {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+    cursor: pointer;
     transition: background 0.8s ease;
 }
-@media only screen and (max-width: 660px) {
+footer {
+    width: 100vw;
+    color: #fff;
+    background: #111;
+    padding: 16px 0px;
+    font-family: 'Roboto', sans-serif;
+    margin: 5vh 0px 0px -12vw;
+    text-align: center;
+}
+footer a {
+    color: #FFB45E;
+}
+
+div.image-container {
+    text-align: justify;
+    width: 50vw;
+    overflow: hidden;
+    margin-left: 12.5vw;
+}
+
+div.image-container img {
+    cursor: pointer;
+    /* transition: all 0.2s ease; */
+}
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: transparent;
+    pointer-events: none;
+    overflow: hidden;
+    background: #00000099;
+    display: none;
+    backdrop-filter: blur(2px);
+}
+.overlay span.name {
+    color: #fff;
+    font-family: 'Lobster', serif;
+    font-size: 30px;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    margin-top: 150px;
+    transform: translateY(-50%);
+}
+
+ol, ul {
+    color: #ddd;
+    font-weight: 300;
+    font-family: 'Roboto', sans-serif;
+}
+ol a, ul a {
+    color: #FFB45E;
+}
+article h4 {
+    font-family: 'Roboto', serif;
+    font-weight: 400;
+    text-align: center;
+    color: #fff;
+}
+.filter-container {
+    width: 65vw;
+    margin: 4vh 0px 4vh 5vw;
+    text-align: center;
+}
+.filter {
+    height: 35px;
+    background: transparent;
+    display: inline-block;
+    line-height: 35px;
+    cursor: pointer;
+    margin: 10px 8px;
+    padding: 0px 16px;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 20px;
+    font-weight: 500;
+    color: #FFB45E;
+    border: 2px solid #FFB45E;
+}
+.filter.selected {
+    box-shadow: none;
+    color: #222;
+    background: #FFB45E;
+}
+.filter.clear {
+    background: #FFB45E55;
+    color: #fff;
+    border: 2px solid #ffb45e;
+}
+@media only screen and (max-width: 768px) {
     nav {
         padding: 0px;
         width: 100vw;
@@ -136,8 +232,9 @@ article div.pix {
         left: -60vw;
         float: left;
         top: 65px;
-        background: #111;
+        background: #111111ee;
         padding: 0;
+        z-index: 100;
         width: 60vw;
         height: calc(100vh - 65px);
     }
@@ -161,39 +258,25 @@ article div.pix {
     header {
         font-size: 43px;
     }
-}
-
-footer {
-    width: 100vw;
-    height: 45px;
-    color: #fff;
-    background: #111;
-    line-height: 45px;
-    font-family: 'Roboto', sans-serif;
-    margin: 5vh 0px 0px -12vw;
-    text-align: center;
-}
-footer a {
-    color: #FFB45E;
-}
-
-div.image-container {
-    text-align: justify;
-}
-
-div.image-container img {
-    cursor: pointer;
-    /* transition: all 0.2s ease; */
-}
-div.image-container img:hover {
-    filter: brightness(45%) blur(1px);
-}
-
-ol, ul {
-    color: #ddd;
-    font-weight: 300;
-    font-family: 'Roboto', sans-serif;
-}
-ol a, ul a {
-    color: #FFB45E;
+    div.image-container {
+        text-align: center!important;
+        width: 100vw;
+        margin-left: -12vw;
+    }
+    nav span.nav-links a:not(.highlight).open {
+        box-shadow: 3px 0px 0px #FFB45E inset;
+    }
+    .filter-container {
+        white-space: nowrap;
+        overflow-x: scroll;
+        position: sticky;
+        top: 65px;
+        background: transparent;
+        width: 100vw;
+        z-index: 1;
+        margin-left: -12vw;
+    }
+    .overlay {
+        opacity: 0;
+    }
 }

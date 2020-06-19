@@ -14,6 +14,9 @@
     <title>Fish Bites Photography</title>
 </head>
 <body>
+    <div class="overlay">
+        <span class="name">Photo Name</span>
+    </div>
     <nav>
         <button class="open-links">
             <i class="fa fa-bars"></i>
@@ -32,21 +35,48 @@
             Photo Gallery
         </header>
         <article>
-            <h2>Fill in information here</h2>
-            <p>
-                text
-            </p>
-            <h2>My Pictures</h2>
+            <div class="filter-container">
+                <div class="filter clear">Clear Filters</div>
+                <div class="filter">Beach</div>
+                <div class="filter">Grass</div>
+                <div class="filter">Waves</div>
+                <div class="filter">Sand</div>
+                <div class="filter">Rocks</div>
+                <div class="filter">Ocean</div>
+                <div class="filter">Bird</div>
+                <div class="filter">Sunset</div>
+                <div class="filter">Tree</div>
+                <div class="filter">Leaves</div>
+                <div class="filter">Roots</div>
+                <div class="filter">Plant</div>
+                <div class="filter">Building</div>
+                <div class="filter">Landscape</div>
+                <div class="filter">Portrait</div>
+            </div>
             <div class="image-container">
-                <img src="images/ex_1.jpg" height="300" class="beach grass waves" />
-                <img src="images/ex_2.jpg" height="300" />
-                <img src="images/ex_3.jpg" height="300" />
-                <img src="images/ex_5.jpg" height="300" />
-                <img src="images/ex_4.jpg" height="300" />
-                <img src="images/ex_6.jpg" height="300" />
-                <img src="images/ex_7.jpg" height="300" />
+                <img src="images/ex_1.jpg" height="300" class="beach grass waves sand landscape ocean carousel" data-name="" />
+                <img src="images/ex_2.jpg" height="300" class="waves rocks beach ocean bird sunset landscape carousel" data-name="" />
+                <img src="images/ex_3.jpg" height="300" class="rocks beach waves portrait grass ocean carousel" data-name="" />
+                <img src="images/ex_5.jpg" height="300" class="rocks beach waves bird landscape grass ocean carousel" data-name="" />
+                <img src="images/ex_4.jpg" height="300" class="tree leaves roots plant portrait grass carousel" data-name="" />
+                <img src="images/ex_6.jpg" height="300" class="beach sand waves landscape ocean carousel" data-name="" />
+                <img src="images/ex_7.jpg" height="300" class="building portrait carousel" data-name="" />
             </div>
         </article>
+        <footer>
+            Website by <a href='https://isaacmaddox.netlify.com'>Isaac Maddox</a>. All pictures taken by Spencer Barrick.
+        </footer>
     </div>
+    <script>
+    $("body").on('scroll', function() {
+        $(".overlay").css('display', 'none');
+        var containertop = $('.filter-container').offset().top + (($("body").height() / 100) * 50);
+        if ($("body").scrollTop() >= containertop && $("body").width() <= 768) {
+            $(".filter-container").css('background-color', '#111111ee');
+        } else {
+            $(".filter-container").css('background-color', 'transparent');
+        }
+    });
+    </script>
 </body>
 </html>
