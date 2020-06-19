@@ -92,6 +92,7 @@ header {
     width: 100vw;
     background: url('images/ex_1.jpg');
     background-size: cover;
+    background-repeat: no-repeat;
     margin-left: -12vw;
     color: #fff;
     text-shadow: 1px 1px 10px #000000;
