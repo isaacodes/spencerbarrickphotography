@@ -136,6 +136,7 @@ footer {
     color: #fff;
     background: #111;
     padding: 16px 0px;
+    position: relative;
     clear: both;
     font-family: 'Roboto', sans-serif;
     margin: 5vh 0px 0px -12vw;
