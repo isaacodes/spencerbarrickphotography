@@ -6,7 +6,7 @@ body, html {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    background: #aaa;
+    background: #131f28;
 }
 
 ::selection {
@@ -16,7 +16,7 @@ body, html {
 nav {
     height: 65px;
     width: calc(100vw - 4vw);
-    background: #333;
+    background: #111;
     position: fixed;
     top: 0;
     padding: 0px 2vw;
@@ -32,25 +32,32 @@ nav span.nav-links a {
     font-family: 'Roboto';
     font-weight: 400;
     vertical-align: middle;
-    height: 45px;
+    height: 35px;
     display: inline-block;
     font-size: 17px;
-    color: #aaa;
+    color: #ffffff66;
     text-decoration: none;
-    line-height: 45px;
-    margin: 10px 10px;
+    line-height: 35px;
+    margin: 15px 10px;
     padding: 0px 14px;
 }
 nav span.nav-links a:not(.highlight):hover {
     color: #fff;
 }
 nav span.nav-links a.highlight {
-    background: #20add8;
-    color: #111111;
+    background: #FFB45E;
+    color: #000;
     border-radius: 5px;
+}
+nav span.nav-links a.highlight.open {
+    box-shadow: 0px 0px 15px #FFB45E;
 }
 nav span.nav-links a.highlight:hover {
     filter: brightness(110%);
+}
+nav span.nav-links a:not(.highlight).open {
+    box-shadow: 0px 3px 0px #FFB45E;
+    color: #fff;
 }
 nav button.open-links {
     height: 51px;
@@ -87,22 +94,22 @@ header {
     text-shadow: 1px 1px 10px #000000;
     text-align: center;
     line-height: 50vh;
-    font-size: 90px;
+    font-size: 75px;
     font-family: 'Roboto', sans-serif;
 }
 
 article h2 {
     font-family: 'Lobster', 'Raleway', serif;
-    color: #111;
+    color: #fff;
     font-weight: 400;
     font-size: 34px;
 }
 article p {
-    color: #333;
+    color: #ddd;
     font-family: 'Roboto';
     text-align: justify;
     text-indent: 20px;
-    font-weight: 500;
+    font-weight: 300;
 }
 article div.pix {
     height: 500px;
@@ -129,7 +136,7 @@ article div.pix {
         left: -60vw;
         float: left;
         top: 65px;
-        background: #333;
+        background: #111;
         padding: 0;
         width: 60vw;
         height: calc(100vh - 65px);
@@ -160,12 +167,33 @@ footer {
     width: 100vw;
     height: 45px;
     color: #fff;
-    background: #222;
+    background: #111;
     line-height: 45px;
     font-family: 'Roboto', sans-serif;
     margin: 5vh 0px 0px -12vw;
     text-align: center;
 }
 footer a {
-    color: #20add8;
+    color: #FFB45E;
+}
+
+div.image-container {
+    text-align: justify;
+}
+
+div.image-container img {
+    cursor: pointer;
+    /* transition: all 0.2s ease; */
+}
+div.image-container img:hover {
+    filter: brightness(45%) blur(1px);
+}
+
+ol, ul {
+    color: #ddd;
+    font-weight: 300;
+    font-family: 'Roboto', sans-serif;
+}
+ol a, ul a {
+    color: #FFB45E;
 }

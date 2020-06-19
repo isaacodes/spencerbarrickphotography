@@ -1,7 +1,7 @@
 var slide = 1;
 function slideshow() {
     slide++;
-    if (slide == 6) {
+    if (slide == 7) {
         slide = 1;
     }
     var imgname = "ex_" + slide.toString();
