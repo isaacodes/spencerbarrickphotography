@@ -163,17 +163,19 @@
             }
         });
 
-        $(document).on('click', 'button.trash, button.trash i', function(e) {
+        $(document).on('click', 'button.trash', function(e) {
             if ($(this).hasClass('trash')) {
                 $(this).hide();
             } else {
                 $(this).parent().hide();
             }
             var thisimg = $(".image-container img:not(.hover)").attr('src');
+            alert(thisimg);
             if (existing.indexOf(thisimg) > -1) {
                 $(".image-container img:not(.hover)").remove();
                 $("img").removeClass('hover');
                 var cut = existing.indexOf(thisimg);
+                alert(cut);
                 existing.splice(cut, 1);
                 localStorage.images = existing;
                 if (existing == "") {
