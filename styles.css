@@ -15,6 +15,9 @@ html {
 ::selection {
     background: #20add833;
 }
+button, .msg {
+    border-radius: 5px!important;
+}
 
 nav {
     height: 65px;

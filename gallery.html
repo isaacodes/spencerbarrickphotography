@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Isaac Maddox">
-    <meta name="keywords" content="Photography, Spencer, Barrick, Camera, Pictures, Download, Website, Amazing, Timelapse, Pictures, High Quality, 4k, 1080p">
+    <meta name="keywords"
+        content="Photography, Spencer, Barrick, Camera, Pictures, Download, Website, Amazing, Timelapse, Pictures, High Quality, 4k, 1080p">
     <meta name="description" content="Spencer Barrick Photography. Professional level photographs in stunning detail.">
     <link rel="stylesheet" href="styles.css" type="text/css">
     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
     <script src="scripts.js"></script>
     <link rel="shortcut icon" href="images/favicon.png">
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <title>Fish Bite Photography</title>
 </head>
+
 <body>
     <div class="img_overlay">
         <button class="cart">Add to Cart</button>
@@ -63,55 +67,154 @@
             </div>
             <div class="image-container">
                 <div class="col-one">
-                    <img src="images/ex_1.jpg" class="carousel beach grass waves sand horizontal ocean" alt="Image" data-location="Beach" data-name="Grass in front of Ocean" />
+                    <img src="images/ex_1.jpg" class="carousel beach grass waves sand horizontal ocean" alt="Image"
+                        data-location="Beach" data-name="Grass in front of Ocean" />
                     <div class="desc">Grass in front of Ocean</div>
-                    <img src="images/ex_3.jpg" class="carousel rocks beach waves vertical grass ocean" alt="Image" data-location="Rocky Shoreline" data-name="Rocky Shoreline" />
+                    <img src="images/ex_3.jpg" class="carousel rocks beach waves vertical grass ocean" alt="Image"
+                        data-location="Rocky Shoreline" data-name="Rocky Shoreline" />
                     <div class="desc">Rocky Shoreline</div>
-                    <img src="images/ex_4.jpg" class="carousel tree leaves roots plant portrait grass" alt="Image" data-location="Forest" data-name="View of Trees from Ground" />
+                    <img src="images/ex_4.jpg" class="carousel tree leaves roots plant portrait grass" alt="Image"
+                        data-location="Forest" data-name="View of Trees from Ground" />
                     <div class="desc">View of Trees from Ground</div>
                 </div>
                 <div class="col-two">
-                    <img src="images/ex_2.jpg"  class="carousel waves rocks beach ocean bird sunset horizontal" alt="Image" data-location="Rocky Beach" data-name="Bird Flying over Rocks during Sunset" />
+                    <img src="images/ex_2.jpg" class="carousel waves rocks beach ocean bird sunset horizontal"
+                        alt="Image" data-location="Rocky Beach" data-name="Bird Flying over Rocks during Sunset" />
                     <div class="desc">Bird Flying over Rocks during Sunset</div>
-                    <img src="images/ex_5.jpg" class="carousel rocks beach waves bird horizontal grass ocean" alt="Image" data-location="Shoreline" data-name="Bird Sitting on Rocks in front of Water" />
+                    <img src="images/ex_5.jpg" class="carousel rocks beach waves bird horizontal grass ocean"
+                        alt="Image" data-location="Shoreline" data-name="Bird Sitting on Rocks in front of Water" />
                     <div class="desc">Bird Sitting on Rocks in front of Water</div>
-                    <img src="images/ex_7.jpg" class="carousel building vertical" data-location="Barber Shop?" alt="Image" data-name="Barber Shop Pole" />
+                    <img src="images/ex_7.jpg" class="carousel building vertical" data-location="Barber Shop?"
+                        alt="Image" data-name="Barber Shop Pole" />
                     <div class="desc">Barber Shop Pole</div>
-                    <img src="images/ex_6.jpg" class="carousel beach sand waves horizontal" alt="Image" data-location="Some Beach, Somewhere" data-name="Beach" />
+                    <img src="images/ex_6.jpg" class="carousel beach sand waves horizontal" alt="Image"
+                        data-location="Some Beach, Somewhere" data-name="Beach" />
                     <div class="desc">Beach</div>
                 </div>
             </div>
 
-           
+
         </article>
         <footer>
-            Website by <a href='https://isaacmaddox.netlify.com'>Isaac Maddox</a>. All pictures taken by Spencer Barrick.
+            Website by <a href='https://isaacmaddox.netlify.com'>Isaac Maddox</a>. All pictures taken by Spencer
+            Barrick.
         </footer>
     </div>
     <script>
-    $("body").on('scroll', function() {
-        $(".overlay").css('display', 'none');
-        var containertop = $('.filter-container').offset().top + (($("body").height() / 100) * 50) -65;
-        // if ($("body").scrollTop() >= containertop && $("body").width() <= 768) {
-        //     $(".filter-container").css('background-color', '#111111ee');
-        // } else {
-        //     $(".filter-container").css('background-color', 'transparent');
-        // }
-    });
+        $(document).ready(function () {
 
-    // Putting images in the correct place on the grid
-    $(document).ready(function() {
-        var row = 1;
-        var col = 0;
-        $(".image-container img").each(function() {
-            col++;
-            if (col == 3) {
-                col = 1;
-                row++;
+            $("body").scroll(function () {
+                var st = $("body").scrollTop() / 4;
+                $("header").css('background-position-y', -st + 'px');
+            });
+            $(document).on('click', '.filter', function () {
+                $(".filter").removeClass('selected');
+                $(this).addClass('selected');
+                if ($(this).html() == "Clear Filters") {
+                    noFilter();
+                    $(this).removeClass('selected');
+                } else {
+                    var tag = $(this).html();
+                    filterImages(tag);
+                }
+            });
+            $(document).on('click', '.pix', function () {
+                window.location = "gallery.html#carousel";
+            });
+            if (window.location.hash) {
+                filterImages('carousel');
             }
-            $(this).css('grid-row', row.toString()).css('grid-column', col.toString());
+
+            $(document).on('mouseover, mousemove', '.image-container img', function () {
+                var h = $(this).height();
+                var w = $(this).width();
+                var x = $(this).offset().left;
+                var y = $(this).offset().top;
+                var tags = $(this).attr('class').replace(/ /g, ', ');
+                var location = $(this).data('location');
+                var name = $(this).data('name');
+                $(".overlay").css('display', 'block').css('top', y + 'px').css('left', x + 'px').css('height', h).css('width', w);
+                $(".overlay .tags-list").html(tags);
+                $(".overlay .location").html(location);
+                $('.overlay .name').html(name);
+            }).on('mouseleave', '.image-container img', function () {
+                $(".overlay").css('display', 'none');
+            });
         });
-    });
+
+
+        $("body").on('scroll', function () {
+            $(".overlay").css('display', 'none');
+        });
+
+        // Putting images in the correct place on the grid
+        $(document).ready(function () {
+            var row = 1;
+            var col = 0;
+            $(".image-container img").each(function () {
+                col++;
+                if (col == 3) {
+                    col = 1;
+                    row++;
+                }
+                $(this).css('grid-row', row.toString()).css('grid-column', col.toString());
+            });
+        });
+
+        var src, h, w, x, y, selimg;
+        $(document).on('click', '.image-container img', function () {
+            selimg = $(this);
+            $(this).css('opacity', '0');
+            src = $(this).attr("src");
+            h = $(this).height();
+            w = $(this).width();
+            x = $(this).offset().left;
+            y = $(this).offset().top;
+            $(".img_exp").attr('src', src).css('display', 'block').css('width', w + 'px').css('top', y + 'px').css('left', x + 'px');
+            function wait() {
+                $(".img_exp").css('top', '50vh').css('left', '50vw').css('transform', 'translate(-50%, -50%)');
+                if ($("body").width() <= 768) {
+                    $(".img_exp").css('width', '100vw').css('height', 'auto');
+                    if ($(".img_exp").width() < $(".img_exp").height()) {
+                        $(".img_exp").css('width', 'auto').css('height', '50vh');
+                    }
+                }
+            }
+            setTimeout(wait, 100);
+            $(".img_overlay").addClass('show');
+        }).on('click', '.img_overlay', function () {
+            $(".img_overlay button.cart").removeClass('success').removeClass('uhoh');
+            $(".img_exp").css('width', w + 'px').css('top', y + 'px').css('left', x + 'px').css('transform', 'none');
+            function wait() {
+                $(".img_exp").css('display', 'none');
+                $(selimg).css('opacity', '1');
+                $(".img_overlay").removeClass('show');
+            }
+            setTimeout(wait, 300);
+        }).on('click', '.img_overlay button', function (e) {
+            e.stopPropagation();
+        });
+
+        // CART PAGE THING
+        $(document).ready(function () {
+            if (localStorage.images == undefined) {
+                localStorage.images = [];
+            } else {
+            }
+        }).on('click', '.img_overlay button.cart', function () {
+            var img = $(selimg).attr('src');
+            var existing = localStorage.images;
+            existing = existing ? existing.split(',') : [];
+            if (existing.indexOf(img) == -1) {
+                existing.push(img);
+                $(this).addClass('success');
+            } else {
+                $(this).addClass('uhoh');
+                $(".img_overlay").append('<div class="msg">Item already in cart</div>');
+            }
+            localStorage.images = existing;
+        });
     </script>
 </body>
+
 </html>

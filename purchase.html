@@ -12,8 +12,81 @@
     <link rel="shortcut icon" href="images/favicon.png">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <title>Fish Bite Photography</title>
+    <style>
+        .image-container {
+            margin-top: 5vh;
+        }
+        .image-container img {
+            z-index: 400;
+        }
+        .noresults {
+            display: none;
+        }
+        .noresults h2 {
+            text-align: center;
+            color: #ffffff99;
+        }
+        .del-overlay {
+            background: #00000099;
+            backdrop-filter: blur(2px);
+            position: fixed;
+            z-index: 100;
+            pointer-events: none;
+        }
+        .del-overlay button.trash {
+            border: 2px solid #FFB45E;
+            color: #FFB45E;
+            cursor: pointer;
+            height: 50px;
+            width: 50px;
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: transparent;
+            font-size: 18px;
+            outline: none;
+            pointer-events: all
+            ;
+        }
+        footer.bottom {
+            position: fixed;
+            bottom: 0;
+            width: 100vw;
+        }
+        @media only screen and (max-width: 768px) {
+            .del-overlay {
+                opacity: 0;
+            }
+            .image-container img {
+                border-radius: 0px;
+            }
+        }
+        .image-container img.hover {
+            filter: brightness(45%) grayscale(75%);
+        }
+        button.trash {
+            background: #da1212;
+            color: #fff;
+            border: none;
+            outline: none;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 500;
+            cursor: pointer;
+            position: fixed;
+            top: 0;
+            transform: translate(-50%, -50%);
+            display: none;
+            left: 0;
+            z-index: 10;
+            padding: 8px 16px;
+        }
+        button.trash i {
+            vertical-align: -20%;
+        }
+    </style>
 </head>
 <body>
+        <button class="trash">Remove from cart? <i class="fa fa-trash-o fa-2x"></i></button>
     <nav>
         <button class="open-links">
             <i class="fa fa-bars"></i>
@@ -32,9 +105,85 @@
             My Cart
         </header>
         <article>
-            <h2>Fill in information here</h2>
+            <div class="image-container">
+                <div class="col-one"></div>
+                <div class="col-two"></div>
+                <div class="noresults">
+                    <h2>No items in your cart.</h2>
+                    <h4>Add them <a href="gallery.html">here</a></h4>
+                </div>
+            </div>
         </article>
+        <footer class="bottom">
+            Website by <a href='https://isaacmaddox.netlify.com'>Isaac Maddox</a>. All pictures taken by Spencer Barrick.
+        </footer>
     </div>
+    <script>
+        // Deleting image overlay
+        $(document).on('click', '.image-container img', function() {
+            if ($(".trash").css('display') == "none") {
+                $("img").addClass('hover');
+                $(this).removeClass('hover');
+                var x = $(this).offset().left + ($(this).width() / 2);
+                var y = $(this).offset().top + ($(this).height() / 2);
+                $(".trash").css('top', y + 'px').css('left', x + "px").show();
+            } else {
+                $(".trash").hide();
+                $("img").removeClass('hover');
+            }
+        });
+        $("body").scroll(function() {
+            $(".trash").hide();
+            $("img").removeClass('hover');
+        });
+        var existing = localStorage.images;
+        existing = existing ? existing.split(',') : [];
+
+        $(document).ready(function() {
+            var col = 0;
+            if (localStorage.images != undefined) {
+                // Get items and add them in the item-container div above
+                if (existing.length > 0) {
+                    // Actually do that
+                    $("footer").removeClass('bottom');
+                    for (var i = 0;i < existing.length;i++) {
+                        col++;
+                        if (col == 3) {
+                            col = 1;
+                        }
+                        var src = existing[i];
+                        if (col == 1) {
+                            $(".image-container .col-one").append('<img src="' + src + '" alt="Image in Your cart" height="400" /><br/>');
+                        } else {
+                            $(".image-container .col-two").append('<img src="' + src + '" alt="Image in Your cart" height="400" /><br/>');
+                        }
+                    }
+                } else {
+                    $(".noresults").css('display', 'block');
+                }
+            }
+        });
+
+        $(document).on('click', 'button.trash, button.trash i', function(e) {
+            if ($(this).hasClass('trash')) {
+                $(this).hide();
+            } else {
+                $(this).parent().hide();
+            }
+            var thisimg = $(".image-container img:not(.hover)").attr('src');
+            if (existing.indexOf(thisimg) > -1) {
+                $(".image-container img:not(.hover)").remove();
+                $("img").removeClass('hover');
+                var cut = existing.indexOf(thisimg);
+                existing.splice(cut, 1);
+                localStorage.images = existing;
+                if (existing == "") {
+                    $(".noresults").show();
+                    $("footer").addClass("bottom");
+                }
+            }
+        });
+    </script>
 </body>
 </html>
 
