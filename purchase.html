@@ -74,7 +74,6 @@
             cursor: pointer;
             position: fixed;
             top: 0;
-            transform: translate(-50%, -50%);
             display: none;
             left: 0;
             z-index: 10;
@@ -86,7 +85,7 @@
     </style>
 </head>
 <body>
-        <button class="trash">Remove from cart? <i class="fa fa-trash-o fa-2x"></i></button>
+        <button class="trash"><i class="fa fa-trash-o fa-2x"></i></button>
     <nav>
         <button class="open-links">
             <i class="fa fa-bars"></i>
@@ -124,8 +123,8 @@
             if ($(".trash").css('display') == "none") {
                 $("img").addClass('hover');
                 $(this).removeClass('hover');
-                var x = $(this).offset().left + ($(this).width() / 2);
-                var y = $(this).offset().top + ($(this).height() / 2);
+                var x = $(this).offset().left + 20;
+                var y = $(this).offset().top + 20;
                 $(".trash").css('top', y + 'px').css('left', x + "px").show();
             } else {
                 $(".trash").hide();
