@@ -46,3 +46,6 @@ function noFilter() {
     $(".image-container img").show();
     $(".image-container .desc").show();
 }
+$(document).on('click', '.pix', function () {
+    window.location = "gallery.html#carousel";
+});

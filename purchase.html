@@ -53,14 +53,6 @@
             bottom: 0;
             width: 100vw;
         }
-        @media only screen and (max-width: 768px) {
-            .del-overlay {
-                opacity: 0;
-            }
-            .image-container img {
-                border-radius: 0px;
-            }
-        }
         .image-container img.hover {
             filter: brightness(45%) grayscale(75%);
         }
@@ -68,6 +60,8 @@
             background: #da1212;
             color: #fff;
             border: none;
+            height: 60px;
+            width: 60px;
             outline: none;
             font-family: 'Roboto', sans-serif;
             font-weight: 500;
@@ -81,6 +75,19 @@
         }
         button.trash i {
             vertical-align: -20%;
+        }
+        @media only screen and (max-width: 768px) {
+            .del-overlay {
+                opacity: 0;
+            }
+            .image-container img {
+                border-radius: 0px;
+            }
+            button.trash {
+                width: 45px;
+                height: 45px;
+                font-size: 8px;
+            }
         }
     </style>
 </head>
@@ -98,18 +105,23 @@
             <a href="contact.html">Contact</a>
             <a href="purchase.html" class="highlight open">My Cart</a>
         </span>
+        <a class="open-cart" href="purchase.html">
+            <i class="fa fa-shopping-cart"></i>
+        </a>
     </nav>
     <div id="wrapper">
         <header>
             My Cart
         </header>
         <article>
+            <h4><strong>Tip:</strong> Click / tap on an image to remove it from your cart.</h4>
             <div class="image-container">
                 <div class="col-one"></div>
                 <div class="col-two"></div>
                 <div class="noresults">
                     <h2>No items in your cart.</h2>
                     <h4>Add them <a href="gallery.html">here</a></h4>
+                    <img src="images/nothing.png" alt="Nothing to see" style="height: 175px;width:unset;margin-left: 35vw;transform: translateX(-50%);" />
                 </div>
             </div>
         </article>

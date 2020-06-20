@@ -41,6 +41,9 @@
             <a href="contact.html">Contact</a>
             <a href="purchase.html" class="highlight">My Cart</a>
         </span>
+        <a class="open-cart" href="purchase.html">
+            <i class="fa fa-shopping-cart"></i>
+        </a>
     </nav>
     <div id="wrapper">
         <header>
@@ -62,6 +65,7 @@
                 <div class="filter">Roots</div>
                 <div class="filter">Plant</div>
                 <div class="filter">Building</div>
+                <div class="filter">Carousel</div>
                 <div class="filter">Horizontal</div>
                 <div class="filter">Vertical</div>
             </div>
@@ -118,9 +122,6 @@
                     filterImages(tag);
                 }
             });
-            $(document).on('click', '.pix', function () {
-                window.location = "gallery.html#carousel";
-            });
             if (window.location.hash) {
                 filterImages('carousel');
             }
@@ -172,21 +173,22 @@
             y = $(this).offset().top;
             $(".img_exp").attr('src', src).css('display', 'block').css('width', w + 'px').css('top', y + 'px').css('left', x + 'px');
             function wait() {
-                $(".img_exp").css('top', '50vh').css('left', '50vw').css('transform', 'translate(-50%, -50%)');
+                $(".img_exp").css('top', '50vh').css('left', '50vw').css('transform', 'translate(-50%, -50%)').css('border-radius', '0px');
                 if ($("body").width() <= 768) {
-                    $(".img_exp").css('width', '100vw').css('height', 'auto');
+                    $(".img_exp").css('width', '100vw').css('height', 'unset');
                     if ($(".img_exp").width() < $(".img_exp").height()) {
-                        $(".img_exp").css('width', 'auto').css('height', '50vh');
+                        $(".img_exp").css('width', '75vw');
                     }
                 }
             }
             setTimeout(wait, 100);
             $(".img_overlay").addClass('show');
         }).on('click', '.img_overlay', function () {
+            $(".img_exp").css('height', 'unset').addClass('closing').css('border-radius', '10px');
             $(".img_overlay button.cart").removeClass('success').removeClass('uhoh');
             $(".img_exp").css('width', w + 'px').css('top', y + 'px').css('left', x + 'px').css('transform', 'none');
             function wait() {
-                $(".img_exp").css('display', 'none');
+                $(".img_exp").css('display', 'none').removeClass('closing');
                 $(selimg).css('opacity', '1');
                 $(".img_overlay").removeClass('show');
             }
