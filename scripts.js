@@ -1,10 +1,13 @@
 var slide = 1;
 function slideshow() {
     slide++;
-    if (slide == 7) {
+    if (slide == 8) {
         slide = 1;
     }
-    var imgname = "ex_" + slide.toString();
+    var imgname = slide.toString() + '_MRSP';
+    if (slide == 4) {
+        imgname = "4_MRSP_animals";
+    }
     $(".pix").css('background-image', 'url("images/' + imgname + '.jpg")');
 }
 setInterval(slideshow, 4000);

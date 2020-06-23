@@ -98,7 +98,7 @@ div#wrapper {
 header {
     height: 50vh;
     width: 100vw;
-    background: url('images/ex_2.jpg');
+    background: url('images/1_IRB.jpg');
     background-size: cover;
     background-position-x: center;
     background-attachment: fixed;
@@ -133,7 +133,7 @@ article div.pix {
     width: 50vw;
     margin-left: 12vw;
     text-align: center;
-    background: url('images/ex_1.jpg'), #111;
+    background: url('images/1_MRSP.jpg'), #111;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
