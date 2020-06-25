@@ -35,7 +35,7 @@ function filterImages(filterValue) {
             $(this).show();
             var ele = $(this);
             $(".desc").each(function() {
-                if ($(this).html() == $(ele).data('name')) {
+                if ($(this).html().toLowerCase() == $(ele).data('name').toLowerCase()) {
                     $(this).show();
                 }
             });
